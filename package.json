@@ -1,0 +1,21 @@
+{
+  "name": "semanticon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimburch/semanticon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jimburch/semanticon/issues"
+  },
+  "homepage": "https://github.com/jimburch/semanticon#readme"
+}
