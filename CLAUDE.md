@@ -6,6 +6,10 @@ A daily emoji guessing game
 
 This is a daily game, similar to Wordle, where users try to "guess the emoji" in a certain number of tries. For example, if the answer is 🌊 and the user guesses 🦅, the game uses a vector JSON to determine how close the guess is with a percentage point. The user then guesses again and the game will tell them if they are "warmer" or "colder" with each guess, using the vector as the source.
 
+Refer to .md files in the .claude folder at the root of this project for more information:
+
+- PROJECT_STRUCTURE.md
+
 This project will:
 
 - Generate a vector file using the OpenAI script in `gen-vectors.js` (this happens in development only, will never run in production)
@@ -32,80 +36,14 @@ This project will:
    ii. Emoji vector file
    iii. Game logic that calculates emoji guesses
 
-**Proposed Project Structure:**
+[COMPLETE - See PROJECT_STRUCTURE.md]
 
-```
-semanticon/
-├── src/
-│   ├── core/                      # Pure TypeScript game logic (extraction-ready)
-│   │   ├── types.ts               # TypeScript type definitions
-│   │   ├── vectorCalculator.ts   # Cosine similarity calculations
-│   │   ├── gameEngine.ts          # Game state, rules, guess validation
-│   │   └── dailySelector.ts       # Deterministic daily emoji selection
-│   │
-│   ├── components/                # React components with CSS Modules
-│   │   ├── Game/
-│   │   │   ├── GameBoard.tsx
-│   │   │   ├── GameBoard.module.css
-│   │   │   ├── GuessHistory.tsx
-│   │   │   └── GuessHistory.module.css
-│   │   ├── EmojiPicker/
-│   │   │   ├── EmojiPicker.tsx   # Pre-made emoji keyboard integration
-│   │   │   └── EmojiPicker.module.css
-│   │   ├── Feedback/
-│   │   │   ├── SimilarityMeter.tsx
-│   │   │   ├── SimilarityMeter.module.css
-│   │   │   ├── WarmerColder.tsx
-│   │   │   └── WarmerColder.module.css
-│   │   ├── Results/
-│   │   │   ├── ShareCard.tsx
-│   │   │   └── ShareCard.module.css
-│   │   └── Stats/
-│   │       ├── StatsModal.tsx
-│   │       └── StatsModal.module.css
-│   │
-│   ├── hooks/                     # Custom React hooks
-│   │   ├── useGameState.ts
-│   │   ├── useLocalStorage.ts    # Persist user data (streaks, history)
-│   │   └── useDailyEmoji.ts
-│   │
-│   ├── data/                      # Static data files
-│   │   ├── vectors.json           # Pre-generated emoji embeddings
-│   │   └── emojiMetadata.json     # Emoji info (labels, categories)
-│   │
-│   ├── utils/                     # Helper utilities
-│   │   ├── dateUtils.ts           # Date normalization for daily challenges
-│   │   └── shareFormatter.ts      # Format game results for sharing
-│   │
-│   ├── styles/                    # Global styles
-│   │   └── global.css
-│   │
-│   ├── App.tsx
-│   ├── App.module.css
-│   ├── main.tsx
-│   └── vite-env.d.ts
-│
-├── scripts/                       # Development scripts (not bundled)
-│   └── gen-vectors.ts             # Generate vectors via OpenAI API
-│
-├── public/                        # Static assets
-│
-├── tests/                         # Unit tests
-│   └── core/
-│       ├── vectorCalculator.test.ts
-│       ├── gameEngine.test.ts
-│       └── dailySelector.test.ts
-│
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
-```
+2. Build game engine
 
-**Architecture Principles:**
+Build the logic that "runs the game." This consists of the game engine inside ./core and its supporting util functions in .utils. This logic should
 
-- **Framework-Agnostic Core**: `src/core/` contains pure TypeScript with no React dependencies, making it easy to extract or move to backend
-- **Component Modularity**: Each component gets its own `.module.css` file for scoped styling
-- **Type Safety**: TypeScript throughout for better DX and fewer runtime errors
-- **Local-First MVP**: All data (vectors, user stats) stored locally; can migrate to S3 later
-- **Separation of Concerns**: Game logic → Hooks → Components (one-way data flow)
+- Take in an emoji and, using the vector json in data, check the users emoji guess against the emoji answer to return a score (1-100%) on how close that guess is
+- If it's the user's second or later guess, compare the score to the previous guess to determine of the user is getting "warmer" or "colder" to guessing the answer
+- Builds a test suite (open to best way to this) that tests this functionality so we can make sure it's working before building the front end
+- Note: there are two existing files, utils/vectorCalculator.ts and core/gameEngine.ts, but you may create new files if needed
+- Refer to test/game-test.ts for a basic example of how this game can work
