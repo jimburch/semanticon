@@ -9,6 +9,8 @@ This is a daily game, similar to Wordle, where users try to "guess the emoji" in
 Refer to .md files in the .claude folder at the root of this project for more information:
 
 - PROJECT_STRUCTURE.md
+- GAME_ENGINE_AND_TESTING.md
+- STATE_MANAGEMENT.md
 
 This project will:
 
@@ -47,3 +49,13 @@ Build the logic that "runs the game." This consists of the game engine inside ./
 - Builds a test suite (open to best way to this) that tests this functionality so we can make sure it's working before building the front end
 - Note: there are two existing files, utils/vectorCalculator.ts and core/gameEngine.ts, but you may create new files if needed
 - Refer to test/game-test.ts for a basic example of how this game can work
+
+[COMPLETE - See GAME_ENGINE_AND_TESTING.md]
+
+3. Use either Zustand or Jotai for state management the app
+
+- Weigh the pros and cons of both and make a suggestions
+- Install and set up the package
+- Set it up in a way so it can be used both in the game engine and in the front end as well
+
+[COMPLETE - See STATE_MANAGEMENT.md]
