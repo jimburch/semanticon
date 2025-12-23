@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-correct);
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.button:disabled {
+  background: var(--color-absent);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.emoji {
+  font-size: 1.5rem;
+}
+
+.placeholder {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: var(--color-present);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}

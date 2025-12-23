@@ -12,6 +12,7 @@ interface GameStore {
   gameState: GameState | null;
   vectors: EmojiVectors | null;
   lastGuessResult: GuessResult | null;
+  selectedEmoji: string | null;
 
   // Actions
   initGame: (targetEmoji: string, gameDate: string, maxGuesses?: number) => void;
@@ -19,6 +20,8 @@ interface GameStore {
   makeGuess: (emoji: string) => GuessResult | null;
   resetGame: () => void;
   isValidGuess: (emoji: string) => boolean;
+  selectEmoji: (emoji: string | null) => void;
+  confirmGuess: () => { success: boolean; error?: string };
 }
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -26,6 +29,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   gameState: null,
   vectors: null,
   lastGuessResult: null,
+  selectedEmoji: null,
 
   // Initialize a new game
   initGame: (targetEmoji, gameDate, maxGuesses = 8) => {
@@ -83,6 +87,44 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { vectors } = get();
     if (!vectors) return false;
     return isValidEmoji(emoji, vectors);
+  },
+
+  // Select an emoji for guessing
+  selectEmoji: (emoji) => {
+    set({ selectedEmoji: emoji });
+  },
+
+  // Confirm the selected emoji as a guess
+  confirmGuess: () => {
+    const { selectedEmoji, gameState, vectors } = get();
+
+    if (!selectedEmoji) {
+      return { success: false, error: "No emoji selected" };
+    }
+
+    if (!gameState || !vectors) {
+      return { success: false, error: "Game not initialized" };
+    }
+
+    if (gameState.isComplete) {
+      return { success: false, error: "Game is already complete" };
+    }
+
+    // Check if emoji is valid
+    if (!isValidEmoji(selectedEmoji, vectors)) {
+      return { success: false, error: "This emoji isn't in today's game" };
+    }
+
+    // Make the guess
+    const result = get().makeGuess(selectedEmoji);
+
+    if (result) {
+      // Clear selection after successful guess
+      set({ selectedEmoji: null });
+      return { success: true };
+    }
+
+    return { success: false, error: "Failed to submit guess" };
   },
 }));
 

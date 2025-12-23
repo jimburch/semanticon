@@ -39,8 +39,8 @@ If a user selects an emoji that isn't in the vector file (~1,908 valid emojis), 
 
 ```tsx
 interface EmojiKeyboardProps {
-  onGuess?: (emoji: string) => void // Called when user confirms a guess
-  disabled?: boolean // Disable the confirm button
+  onGuess?: (emoji: string) => void; // Called when user confirms a guess
+  disabled?: boolean; // Disable the confirm button
 }
 ```
 
@@ -55,15 +55,36 @@ src/components/EmojiKeyboard/
 
 ## Styling
 
-The picker is styled to match the app's dark theme using CSS variables:
+The picker is styled to match the app's dark theme using CSS variables and Frimousse's `[frimousse-*]` attribute selectors.
 
-- Background: `--color-surface` (#1a1a1b)
-- Borders: `--color-border` (#3a3a3c)
-- Text: `--color-text` (#ffffff)
-- Muted text: `--color-text-muted` (#818384)
-- Confirm button: `--color-correct` (#538d4e)
+### Design Decisions
 
-Frimousse's internal elements are styled via global `[data-frimousse-*]` attribute selectors.
+- **Full-width layout**: Keyboard expands to fill the container (max 600px)
+- **Large emojis**: 48px cells with 28px font size for easy tapping on mobile
+- **Seamless integration**: Transparent background blends with app background
+- **11 columns**: Optimized for 600px container with 48px emojis + 4px gaps
+
+### Theme Variables Used
+
+| Element           | Variable             | Value   |
+| ----------------- | -------------------- | ------- |
+| Root background   | transparent          | -       |
+| Search background | `--color-surface`    | #1a1a1b |
+| Search border     | `--color-border`     | #3a3a3c |
+| Text              | `--color-text`       | #ffffff |
+| Muted text        | `--color-text-muted` | #818384 |
+| Hover state       | `--color-surface`    | #1a1a1b |
+
+### Emoji Sizing
+
+| Property  | Value |
+| --------- | ----- |
+| Cell size | 48px  |
+| Font size | 28px  |
+| Row gap   | 4px   |
+| Columns   | 11    |
+
+Frimousse's internal elements are styled via global `[frimousse-*]` attribute selectors in `EmojiKeyboard.module.css`.
 
 ## Dependencies
 
@@ -89,15 +110,15 @@ Frimousse's internal elements are styled via global `[data-frimousse-*]` attribu
 ## Usage Example
 
 ```tsx
-import { EmojiKeyboard } from './components'
+import { EmojiKeyboard } from "./components";
 
 function Game() {
   const handleGuess = (emoji: string) => {
-    console.log('User guessed:', emoji)
+    console.log("User guessed:", emoji);
     // Process the guess...
-  }
+  };
 
-  return <EmojiKeyboard onGuess={handleGuess} disabled={gameOver} />
+  return <EmojiKeyboard onGuess={handleGuess} disabled={gameOver} />;
 }
 ```
 

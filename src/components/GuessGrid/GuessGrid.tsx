@@ -1,13 +1,13 @@
+import { useGameStore } from "../../store";
 import styles from "./GuessGrid.module.css";
 
 const MAX_GUESSES = 8;
 
-interface GuessGridProps {
-  guesses?: string[];
-}
+const GuessGrid = () => {
+  const gameState = useGameStore((state) => state.gameState);
+  const guesses = gameState?.guesses ?? [];
 
-const GuessGrid = ({ guesses = [] }: GuessGridProps) => {
-  const tiles = Array.from({ length: MAX_GUESSES }, (_, i) => guesses[i] || null);
+  const tiles = Array.from({ length: MAX_GUESSES }, (_, i) => guesses[i]?.emoji || null);
 
   return (
     <div className={styles.grid}>
