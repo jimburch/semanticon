@@ -1,13 +1,13 @@
-import styles from './GuessGrid.module.css'
+import styles from "./GuessGrid.module.css";
 
-const MAX_GUESSES = 8
+const MAX_GUESSES = 8;
 
 interface GuessGridProps {
-  guesses?: string[]
+  guesses?: string[];
 }
 
-export function GuessGrid({ guesses = [] }: GuessGridProps) {
-  const tiles = Array.from({ length: MAX_GUESSES }, (_, i) => guesses[i] || null)
+const GuessGrid = ({ guesses = [] }: GuessGridProps) => {
+  const tiles = Array.from({ length: MAX_GUESSES }, (_, i) => guesses[i] || null);
 
   return (
     <div className={styles.grid}>
@@ -17,5 +17,7 @@ export function GuessGrid({ guesses = [] }: GuessGridProps) {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
+
+export default GuessGrid;

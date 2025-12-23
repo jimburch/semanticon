@@ -5,11 +5,7 @@
 
 import { create } from "zustand";
 import type { GameState, GuessResult, EmojiVectors } from "../types";
-import {
-  createGame,
-  makeGuess as makeGuessEngine,
-  isValidEmoji,
-} from "../core/gameEngine";
+import { createGame, makeGuess as makeGuessEngine, isValidEmoji } from "../core/gameEngine";
 
 interface GameStore {
   // State
@@ -60,11 +56,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     try {
-      const { gameState: newGameState, result } = makeGuessEngine(
-        gameState,
-        emoji,
-        vectors
-      );
+      const { gameState: newGameState, result } = makeGuessEngine(gameState, emoji, vectors);
 
       set({
         gameState: newGameState,

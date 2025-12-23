@@ -1,5 +1,8 @@
-import styles from './styles/App.module.css'
-import { Header, GuessGrid, HintIndicators, EmojiKeyboard } from './components'
+import styles from "./styles/App.module.css";
+import Header from "./components/Header/Header";
+import GuessGrid from "./components/GuessGrid/GuessGrid";
+import HintIndicators from "./components/HintIndicators/HintIndicators";
+import EmojiKeyboard from "./components/EmojiKeyboard/EmojiKeyboard";
 
 function App() {
   return (
@@ -11,7 +14,7 @@ function App() {
         <EmojiKeyboard />
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

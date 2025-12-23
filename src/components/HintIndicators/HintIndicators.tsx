@@ -1,20 +1,20 @@
-import styles from './HintIndicators.module.css'
+import styles from "./HintIndicators.module.css";
 
 interface HintIndicatorsProps {
-  colorMatch?: boolean | null
-  categoryMatch?: boolean | null
+  colorMatch?: boolean | null;
+  categoryMatch?: boolean | null;
 }
 
-export function HintIndicators({ colorMatch = null, categoryMatch = null }: HintIndicatorsProps) {
+const HintIndicators = ({ colorMatch = null, categoryMatch = null }: HintIndicatorsProps) => {
   const getStatusClass = (match: boolean | null) => {
-    if (match === null) return ''
-    return match ? styles.correct : styles.incorrect
-  }
+    if (match === null) return "";
+    return match ? styles.correct : styles.incorrect;
+  };
 
   const getStatusText = (match: boolean | null) => {
-    if (match === null) return '?'
-    return match ? '✓' : '✗'
-  }
+    if (match === null) return "?";
+    return match ? "✓" : "✗";
+  };
 
   return (
     <div className={styles.container}>
@@ -31,5 +31,7 @@ export function HintIndicators({ colorMatch = null, categoryMatch = null }: Hint
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default HintIndicators;
