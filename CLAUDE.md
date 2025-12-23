@@ -52,13 +52,8 @@ Build the logic that "runs the game." This consists of the game engine inside ./
 
 5. Outline Front End
 
-The goal of this task is to set up the front end in Vite as a basic outline we can iterate. This first iteration should:
+[COMPLETE - FRONT_END_OUTLINE.md]
 
-- This app is a single page so it should set up the main view
-- Create component folders that each have a tsx file and a module.css file
-- Have a title ("Semanticon")
-- A row of 8 squares or spaces where the emoji guesses will be displayed
-- Two spaces below that to show when the user guesses the right color and category of the emoji
-- The space for the emoji keyboard where the user will select guesses (don't setup this keyboard yet, just a placeholder)
-- Use Wordle for the inspiration of the look and feel, this game should be simple and intuitive
-- Don't worry about game functionality yet
+6. Emoji Keyboard
+
+Find an existing emoji keyboard package via npm that will best serve the needs of this game. This keyboard should look good on mobile and desktop, be easy to use, allow for customization (like excluding emojis) but have a default setup. Users will use it to search for emojis (so it should have a search function) and tap to select. When a user taps to select there should be an additional button or keystroke to lock in their choice. A lightweight package would be a bonus. Ask clarifying questions, excute, then write your summar in @EMOJI_KEYBOARD.md
