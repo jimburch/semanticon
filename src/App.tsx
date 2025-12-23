@@ -1,11 +1,17 @@
-import "./styles/App.module.css";
+import styles from './styles/App.module.css'
+import { Header, GuessGrid, HintIndicators, EmojiKeyboard } from './components'
 
 function App() {
   return (
-    <>
-      <h1>Semanticon</h1>
-    </>
-  );
+    <div className={styles.app}>
+      <Header />
+      <main className={styles.main}>
+        <GuessGrid />
+        <HintIndicators />
+        <EmojiKeyboard />
+      </main>
+    </div>
+  )
 }
 
-export default App;
+export default App

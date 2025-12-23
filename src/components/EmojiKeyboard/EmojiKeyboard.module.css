@@ -1,0 +1,25 @@
+.container {
+  padding: var(--spacing-lg) var(--spacing-md);
+  margin-top: auto;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 200px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-surface);
+}
+
+.icon {
+  font-size: 48px;
+}
+
+.text {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}

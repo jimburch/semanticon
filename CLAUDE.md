@@ -49,3 +49,16 @@ Build the logic that "runs the game." This consists of the game engine inside ./
 4. Project Linting
 
 [COMPLETE - LINTER.md]
+
+5. Outline Front End
+
+The goal of this task is to set up the front end in Vite as a basic outline we can iterate. This first iteration should:
+
+- This app is a single page so it should set up the main view
+- Create component folders that each have a tsx file and a module.css file
+- Have a title ("Semanticon")
+- A row of 8 squares or spaces where the emoji guesses will be displayed
+- Two spaces below that to show when the user guesses the right color and category of the emoji
+- The space for the emoji keyboard where the user will select guesses (don't setup this keyboard yet, just a placeholder)
+- Use Wordle for the inspiration of the look and feel, this game should be simple and intuitive
+- Don't worry about game functionality yet

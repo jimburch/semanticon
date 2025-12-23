@@ -3,6 +3,41 @@
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
+:root {
+  /* Dark theme colors (Wordle-inspired) */
+  --color-bg: #121213;
+  --color-surface: #1a1a1b;
+  --color-border: #3a3a3c;
+  --color-border-light: #565758;
+  --color-text: #ffffff;
+  --color-text-muted: #818384;
+
+  /* Game state colors */
+  --color-correct: #538d4e;
+  --color-present: #b59f3b;
+  --color-absent: #3a3a3c;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Typography */
+  --font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 24px;
+  --font-size-title: 36px;
+
+  /* Sizing */
+  --tile-size: 58px;
+  --tile-size-mobile: 48px;
+  --border-radius: 4px;
+}
+
 *,
 *::before,
 *::after {
@@ -22,6 +57,10 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  min-height: 100vh;
 }
 
 img,
