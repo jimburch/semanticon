@@ -28,15 +28,11 @@ This project will:
 - Game logic runs locally in TS/JS files, no AI is used in the game itself
 - We could explore storing the vector and "emoji of the day" on S3 but this will be local in the MVP iteration
 - User game data saves local to user's browser (things like play streak, win streak, etc.), similar to how Wordle does this
-- A pre-made, popular emoji keyboard so the user doesn't have to use their own native keyboard when selecting emojis
+- A pre-made, popular emoji keyboard so the user do esn't have to use their own native keyboard when selecting emojis
 
 ### Project Steps
 
 1. Organize the Project Structure
-   a. Below this comment, draft up a proposed structure of this project that will include
-   i. Vite front end
-   ii. Emoji vector file
-   iii. Game logic that calculates emoji guesses
 
 [COMPLETE - See PROJECT_STRUCTURE.md]
 
@@ -44,18 +40,12 @@ This project will:
 
 Build the logic that "runs the game." This consists of the game engine inside ./core and its supporting util functions in .utils. This logic should
 
-- Take in an emoji and, using the vector json in data, check the users emoji guess against the emoji answer to return a score (1-100%) on how close that guess is
-- If it's the user's second or later guess, compare the score to the previous guess to determine of the user is getting "warmer" or "colder" to guessing the answer
-- Builds a test suite (open to best way to this) that tests this functionality so we can make sure it's working before building the front end
-- Note: there are two existing files, utils/vectorCalculator.ts and core/gameEngine.ts, but you may create new files if needed
-- Refer to test/game-test.ts for a basic example of how this game can work
-
 [COMPLETE - See GAME_ENGINE_AND_TESTING.md]
 
 3. Use either Zustand or Jotai for state management the app
 
-- Weigh the pros and cons of both and make a suggestions
-- Install and set up the package
-- Set it up in a way so it can be used both in the game engine and in the front end as well
-
 [COMPLETE - See STATE_MANAGEMENT.md]
+
+4. Project Linting
+
+[COMPLETE - LINTER.md]
