@@ -100,3 +100,89 @@ The confirm button uses the app's design tokens:
 - Green (`--color-correct`) when enabled
 - Gray (`--color-absent`) when disabled
 - Yellow (`--color-present`) for error messages
+
+## Task 7C: Improved Game UI
+
+### Overview
+
+Enhanced the guessing UI with visual feedback for guess results and category matching.
+
+### Changes Made
+
+#### 1. Emoji Category System
+
+Created `src/utils/emojiCategory.ts` to determine emoji categories using emojibase data:
+
+- Fetches emoji data from the same CDN as frimousse (emojibase)
+- Provides `isSameCategory(emoji1, emoji2)` function to compare categories
+- Categories are based on emojibase groups (10 main categories like "smileys-emotion", "animals-nature", etc.)
+
+#### 2. Updated Type Definitions
+
+Added `categoryMatch: boolean` to both `GuessResult` and `Guess` types in `src/types/index.ts`.
+
+#### 3. GuessGrid Improvements
+
+The guess grid now shows:
+
+- **Pending emoji**: Selected (but unconfirmed) emoji appears in the next empty slot
+- **Color-coded backgrounds** after confirmation:
+  - Light green (`--color-correct`): Correct guess
+  - Light yellow (`--color-present`): Wrong guess but same category as answer
+  - Light grey (`--color-absent`): Wrong guess and wrong category
+
+#### 4. GuessFeedback Component
+
+New component `src/components/GuessFeedback/` shows feedback after each guess:
+
+- Displays similarity percentage (e.g., "45% similar")
+- Shows "Warmer!" or "Colder" compared to previous guess
+- For first guess, only shows percentage
+- Shows "Correct!" when the answer is found
+
+#### 5. HintIndicators Removed
+
+- Removed the entire HintIndicators component (both "Color" and "Category" blocks)
+- Category feedback is now conveyed through the colored guess tile backgrounds (yellow = same category)
+
+#### 6. ConfirmGuess Button
+
+- Removed emoji display from the button (emoji now shows in guess grid)
+- Button simply shows "Confirm" when an emoji is selected
+
+### Updated Data Flow
+
+```
+User selects emoji → selectedEmoji updates
+  → GuessGrid shows pending emoji in next slot
+
+User clicks Confirm → confirmGuess() validates
+  → makeGuess() calculates score + categoryMatch
+  → GuessGrid updates with colored tile (green/yellow/grey)
+  → GuessFeedback shows percentage and direction
+```
+
+### File Structure (New/Modified)
+
+```
+src/
+├── utils/
+│   └── emojiCategory.ts           # NEW: Category lookup utility
+├── components/
+│   ├── GuessFeedback/             # NEW
+│   │   ├── GuessFeedback.tsx
+│   │   └── GuessFeedback.module.css
+│   ├── GuessGrid/
+│   │   ├── GuessGrid.tsx          # MODIFIED: Pending state + colors
+│   │   └── GuessGrid.module.css   # MODIFIED: New color classes
+│   └── ConfirmGuess/
+│       ├── ConfirmGuess.tsx       # MODIFIED: No emoji in button
+│       └── ConfirmGuess.module.css
+├── types/
+│   └── index.ts                   # MODIFIED: Added categoryMatch
+├── core/
+│   └── gameEngine.ts              # MODIFIED: Calculate categoryMatch
+└── App.tsx                        # MODIFIED: Added GuessFeedback, load emojiData, removed HintIndicators
+```
+
+Note: HintIndicators component files still exist but are no longer used.

@@ -1,33 +1,19 @@
+import { useGameStore } from "../../store";
 import styles from "./HintIndicators.module.css";
 
-interface HintIndicatorsProps {
-  colorMatch?: boolean | null;
-  categoryMatch?: boolean | null;
-}
+const HintIndicators = () => {
+  const gameState = useGameStore((state) => state.gameState);
+  const guesses = gameState?.guesses ?? [];
 
-const HintIndicators = ({ colorMatch = null, categoryMatch = null }: HintIndicatorsProps) => {
-  const getStatusClass = (match: boolean | null) => {
-    if (match === null) return "";
-    return match ? styles.correct : styles.incorrect;
-  };
-
-  const getStatusText = (match: boolean | null) => {
-    if (match === null) return "?";
-    return match ? "✓" : "✗";
-  };
+  // Check if any guess has matched the category
+  const hasCategoryMatch = guesses.some((guess) => guess.categoryMatch);
 
   return (
     <div className={styles.container}>
       <div className={styles.indicator}>
-        <span className={styles.label}>Color</span>
-        <div className={`${styles.box} ${getStatusClass(colorMatch)}`}>
-          {getStatusText(colorMatch)}
-        </div>
-      </div>
-      <div className={styles.indicator}>
         <span className={styles.label}>Category</span>
-        <div className={`${styles.box} ${getStatusClass(categoryMatch)}`}>
-          {getStatusText(categoryMatch)}
+        <div className={`${styles.box} ${hasCategoryMatch ? styles.correct : ""}`}>
+          {hasCategoryMatch ? "✓" : "?"}
         </div>
       </div>
     </div>

@@ -12,12 +12,6 @@ const ConfirmGuess = () => {
 
     if (!result.success && result.error) {
       setError(result.error);
-    } else {
-      // Show alert with raw JSON of the guess result
-      const guessResult = useGameStore.getState().lastGuessResult;
-      if (guessResult) {
-        alert(JSON.stringify(guessResult, null, 2));
-      }
     }
   };
 
@@ -27,10 +21,7 @@ const ConfirmGuess = () => {
     <div className={styles.container}>
       <button className={styles.button} onClick={handleConfirm} disabled={isDisabled}>
         {selectedEmoji ? (
-          <>
-            <span>Confirm:</span>
-            <span className={styles.emoji}>{selectedEmoji}</span>
-          </>
+          <span>Confirm</span>
         ) : (
           <span className={styles.placeholder}>Select an emoji to guess</span>
         )}

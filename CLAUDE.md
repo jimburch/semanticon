@@ -64,14 +64,8 @@ Build the logic that "runs the game." This consists of the game engine inside ./
 
 7A. Confirm Guess
 
-Build a component above the search bar that acts as a "confirm" button when the user selects an emoji. The button component says "Confirm: " with the emoji selected next to it. Before a guess is entered from the keyboard, it's disabled and says "Select an emoji to guess". Ask clarifying questions and then update @GUESSING.md with your progress
-
 7B: Initialize Game
 
-This is a big task so let's break it down in steps and do one at a time.
+7C: Improved Game UI
 
-- On game/app load, a new game should initialize. For the sake of testing let's hard code the baseball emoji: ⚾ as the "emoji of the day"
-- When the user selects an emoji to guess it will load into the confirm button
-- The user clicks confirm, the guess goes into the first square up top and, for testing, the stats of the guess against the answer using the vector will print the game data in an alert
-
-Ask clarifying questions, implement up to this point, and then we'll move forward
+[COMPLETE - See GUESSING.md]

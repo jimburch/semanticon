@@ -7,14 +7,7 @@ export type EmojiVector = number[];
 export type EmojiVectors = Record<string, EmojiVector>;
 
 // Temperature feedback tiers (absolute score-based)
-export type TemperatureTier =
-  | "FREEZING"
-  | "COLD"
-  | "COOL"
-  | "WARM"
-  | "HOT"
-  | "BOILING"
-  | "PERFECT";
+export type TemperatureTier = "FREEZING" | "COLD" | "COOL" | "WARM" | "HOT" | "BOILING" | "PERFECT";
 
 // Direction feedback (relative to previous guess)
 export type Direction = "WARMER" | "COLDER" | "SAME" | "FIRST";
@@ -26,6 +19,7 @@ export interface GuessResult {
   temperature: TemperatureTier;
   direction: Direction;
   isCorrect: boolean;
+  categoryMatch: boolean; // true if guess is in same category as target
 }
 
 // A recorded guess in game history
@@ -34,6 +28,7 @@ export interface Guess {
   score: number;
   temperature: TemperatureTier;
   direction: Direction;
+  categoryMatch: boolean;
   timestamp: number;
 }
 

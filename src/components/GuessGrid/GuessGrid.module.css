@@ -17,6 +17,24 @@
   background-color: var(--color-surface);
 }
 
+/* Correct guess - light green */
+.correct {
+  background-color: var(--color-correct);
+  border-color: var(--color-correct);
+}
+
+/* Same category but wrong guess - light yellow */
+.sameCategory {
+  background-color: var(--color-present);
+  border-color: var(--color-present);
+}
+
+/* Wrong guess and wrong category - light grey */
+.wrongCategory {
+  background-color: var(--color-absent);
+  border-color: var(--color-absent);
+}
+
 .emoji {
   font-size: 32px;
   line-height: 1;

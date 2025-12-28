@@ -37,9 +37,3 @@
   border-color: var(--color-correct);
   color: var(--color-text);
 }
-
-.incorrect {
-  background-color: var(--color-absent);
-  border-color: var(--color-absent);
-  color: var(--color-text);
-}

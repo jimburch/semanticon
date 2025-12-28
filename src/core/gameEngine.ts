@@ -13,6 +13,7 @@ import type {
 } from "../types";
 import { cosineSimilarity, similarityToScore } from "./vectorCalculator";
 import { normalizeEmoji } from "../utils/emoji";
+import { isSameCategory } from "../utils/emojiCategory";
 
 // Default thresholds for temperature tiers
 const TEMPERATURE_THRESHOLDS = {
@@ -44,10 +45,7 @@ export const getTemperatureTier = (score: number): TemperatureTier => {
 /**
  * Get direction (warmer/colder) compared to previous guess
  */
-export const getDirection = (
-  currentScore: number,
-  previousScore: number | null
-): Direction => {
+export const getDirection = (currentScore: number, previousScore: number | null): Direction => {
   if (previousScore === null) return "FIRST";
   if (currentScore > previousScore) return "WARMER";
   if (currentScore < previousScore) return "COLDER";
@@ -81,6 +79,7 @@ export const calculateGuess = (
   const temperature = getTemperatureTier(score);
   const direction = getDirection(score, previousScore);
   const isCorrect = normalizedGuess === normalizedTarget;
+  const categoryMatch = isSameCategory(guessEmoji, targetEmoji);
 
   return {
     emoji: guessEmoji,
@@ -88,6 +87,7 @@ export const calculateGuess = (
     temperature,
     direction,
     isCorrect,
+    categoryMatch,
   };
 };
 
@@ -124,17 +124,10 @@ export const makeGuess = (
 
   // Get previous score for direction comparison
   const previousScore =
-    gameState.guesses.length > 0
-      ? gameState.guesses[gameState.guesses.length - 1].score
-      : null;
+    gameState.guesses.length > 0 ? gameState.guesses[gameState.guesses.length - 1].score : null;
 
   // Calculate the guess result
-  const result = calculateGuess(
-    guessEmoji,
-    gameState.targetEmoji,
-    vectors,
-    previousScore
-  );
+  const result = calculateGuess(guessEmoji, gameState.targetEmoji, vectors, previousScore);
 
   // Create the guess record
   const guess: Guess = {
@@ -142,6 +135,7 @@ export const makeGuess = (
     score: result.score,
     temperature: result.temperature,
     direction: result.direction,
+    categoryMatch: result.categoryMatch,
     timestamp: Date.now(),
   };
 
