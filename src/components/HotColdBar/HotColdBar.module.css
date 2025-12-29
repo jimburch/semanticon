@@ -21,7 +21,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--color-border);
+  background: linear-gradient(to right, lightblue, red);
   border-radius: 2px;
 }
 

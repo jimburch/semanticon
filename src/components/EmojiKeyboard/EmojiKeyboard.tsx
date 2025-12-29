@@ -10,7 +10,7 @@ const EmojiKeyboard = () => {
   };
 
   return (
-    <EmojiPicker.Root onEmojiSelect={handleEmojiSelect} columns={9}>
+    <EmojiPicker.Root onEmojiSelect={handleEmojiSelect} columns={9} emojibaseUrl="/emojis">
       <EmojiPicker.Search />
       <EmojiPicker.Viewport>
         <EmojiPicker.Loading>Loading…</EmojiPicker.Loading>
