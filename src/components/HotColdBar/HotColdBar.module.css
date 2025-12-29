@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 320px;
+  margin: var(--spacing-md) auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.trackLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.indicator {
+  position: absolute;
+  font-size: 24px;
+  line-height: 1;
+  transform: translateX(-50%);
+  transition: left 0.4s ease-out;
+  z-index: 1;
+}
+
+.indicator.correct {
+  /* When correct, hide the indicator as it "enters" the box */
+  opacity: 0;
+  transition:
+    left 0.4s ease-out,
+    opacity 0.2s ease-out 0.3s;
+}
+
+.mysteryBox {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+  font-size: 20px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.mysteryBox.revealed {
+  border-color: var(--color-correct);
+  background: var(--color-correct);
+  color: var(--color-text);
+  font-size: 24px;
+}

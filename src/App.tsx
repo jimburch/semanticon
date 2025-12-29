@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "./styles/App.module.css";
 import Header from "./components/Header/Header";
 import GuessGrid from "./components/GuessGrid/GuessGrid";
-import GuessFeedback from "./components/GuessFeedback/GuessFeedback";
+import HotColdBar from "./components/HotColdBar/HotColdBar";
 import ConfirmGuess from "./components/ConfirmGuess/ConfirmGuess";
 import EmojiKeyboard from "./components/EmojiKeyboard/EmojiKeyboard";
 import { useGameStore } from "./store";
@@ -30,7 +30,7 @@ function App() {
       <Header />
       <main className={styles.main}>
         <GuessGrid />
-        <GuessFeedback />
+        <HotColdBar />
         <ConfirmGuess />
         <EmojiKeyboard />
       </main>
