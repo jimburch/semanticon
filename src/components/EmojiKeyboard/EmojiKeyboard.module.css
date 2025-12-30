@@ -1,114 +1,17 @@
-/* Emoji Keyboard Styles - Frimousse customization */
-
-/* Root container - full width, seamless background */
-[frimousse-root] {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  height: 400px;
-  background: transparent;
-  isolation: isolate;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Search input */
-[frimousse-search] {
-  position: relative;
-  z-index: 10;
-  appearance: none;
-  margin-block-start: var(--spacing-sm);
-  margin-inline: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-md);
-  color: var(--color-text);
-  outline: none;
-}
-
-[frimousse-search]:focus {
-  border-color: var(--color-border-light);
-}
-
-[frimousse-search]::placeholder {
-  color: var(--color-text-muted);
-}
-
-/* Viewport - scrolling container */
-[frimousse-viewport] {
-  position: relative;
-  flex: 1;
-  outline: none;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-/* Loading and empty states */
-[frimousse-loading],
-[frimousse-empty] {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-md);
-}
-
-/* Emoji list container */
-[frimousse-list] {
-  padding-block-end: var(--spacing-md);
-  user-select: none;
+/* Emoji Keyboard Container */
+.container {
   width: 100%;
   max-width: 100%;
 }
 
-/* Category headers */
-[frimousse-category-header] {
-  padding: var(--spacing-md) var(--spacing-sm) var(--spacing-sm);
-  background: transparent;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Emoji rows */
-[frimousse-row] {
-  padding-inline: var(--spacing-sm);
-  scroll-margin-block: var(--spacing-md);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  max-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
-}
-
-/* Individual emoji buttons - responsive size */
-[frimousse-emoji] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: none;
-  border-radius: var(--border-radius);
-  background: transparent;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background-color 0.1s ease;
-  flex-shrink: 0;
-}
-
-[frimousse-emoji]:hover,
-[frimousse-emoji][data-active] {
-  background: var(--color-surface);
+/* Override emoji-picker-react styles for seamless dark theme */
+.container :global(.EmojiPickerReact) {
+  --epr-bg-color: transparent;
+  --epr-category-label-bg-color: var(--color-bg);
+  --epr-search-input-bg-color: var(--color-surface);
+  --epr-picker-border-color: transparent;
+  --epr-search-border-color: var(--color-border);
+  --epr-category-icon-active-color: var(--color-text);
+  --epr-highlight-color: var(--color-surface);
+  border: none !important;
 }

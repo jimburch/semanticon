@@ -16,7 +16,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "frimousse": "^0.3.0",
+    "emoji-picker-react": "^4.16.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "zustand": "^5.0.9"
