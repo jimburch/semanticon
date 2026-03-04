@@ -62,3 +62,10 @@
   color: var(--color-text);
   font-size: 24px;
 }
+
+.mysteryBox.lost {
+  border-color: var(--color-incorrect);
+  background: var(--color-incorrect);
+  color: var(--color-text);
+  font-size: 24px;
+}

@@ -30,6 +30,10 @@ This project will:
 - User game data saves local to user's browser (things like play streak, win streak, etc.), similar to how Wordle does this
 - A pre-made, popular emoji keyboard so the user do esn't have to use their own native keyboard when selecting emojis
 
+### Testing
+
+Regularly run unit tests when creating and modifying code. When making changes to the apps UI, is the Playwright MCP to check how changes look in the browser.
+
 ### Project Steps
 
 1. Organize the Project Structure
@@ -72,24 +76,4 @@ Build the logic that "runs the game." This consists of the game engine inside ./
 
 8: Hot/Cold Progress Bar
 
-I want to build a progess bar that shows how hot or cold a guess is to the final answer. I'll try to visualize it using text below.
-
-A fresh progress bar with no guesses would look like this:
-
-|------------------------------| [?]
-
-The bar is empty with a box to the right that is filled with a question mark to show the mystery emoji of the day. When the user makes their first guess, that guessed emoji slides in from the right and stops relative to the percentage of how close the guess is:
-
-|--------😄--------------------| [?]
-
-When the user guesses again, the emoji will slide left or right, depending on if the guess is warmer or colder and then change to the newest guessed emoji:
-
-|--------------------🏈--------| [?]
-
-The emoji will continue to slide left and right and change depending on the user's guesses. When the user guesses the correct answer, the emoji will slide all the way into the box on the right and change into the correctly guessed emoji:
-
-|------------------------------| [⚾]
-
-This will not affect how the guess boxes behave. Instead this will replace the warmer/colder text that is currently below the guess boxes. Don't worry too much about overstyling the bar right now. Let's keep it basic and iterate.
-
-Ask clarifying questions, implement, then give a summary of your work in HOT_COLD_BAR.md.
+[COMPLETE - See HOT_COLD_BAR.md]

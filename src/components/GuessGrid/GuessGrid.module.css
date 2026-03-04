@@ -35,6 +35,12 @@
   border-color: var(--color-absent);
 }
 
+/* Final incorrect guess in a lost game - red */
+.incorrect {
+  background-color: var(--color-incorrect);
+  border-color: var(--color-incorrect);
+}
+
 .emoji {
   font-size: 32px;
   line-height: 1;

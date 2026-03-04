@@ -47,6 +47,8 @@ describe("getHotColdBarState", () => {
       expect(result.position).toBe(0);
       expect(result.isCorrect).toBe(false);
       expect(result.hasGuesses).toBe(false);
+      expect(result.isLost).toBe(false);
+      expect(result.targetEmoji).toBeNull();
     });
 
     it("returns default state when guesses array is empty", () => {
@@ -57,6 +59,8 @@ describe("getHotColdBarState", () => {
       expect(result.position).toBe(0);
       expect(result.isCorrect).toBe(false);
       expect(result.hasGuesses).toBe(false);
+      expect(result.isLost).toBe(false);
+      expect(result.targetEmoji).toBe("🎯");
     });
   });
 
@@ -141,6 +145,47 @@ describe("getHotColdBarState", () => {
       const result = getHotColdBarState(gameState, null);
 
       expect(result.isCorrect).toBe(false);
+    });
+  });
+
+  describe("lost game state", () => {
+    it("returns isLost true when game is complete and not won", () => {
+      const guesses = Array.from({ length: 8 }, (_, i) => createGuess(`${i}️⃣`, (i + 1) * 10));
+      const gameState = createGameState(guesses);
+      gameState.isComplete = true;
+      gameState.isWon = false;
+      const result = getHotColdBarState(gameState, null);
+
+      expect(result.isLost).toBe(true);
+      expect(result.targetEmoji).toBe("🎯");
+    });
+
+    it("returns isLost false when game is complete and won", () => {
+      const guesses = [createGuess("🎯", 100)];
+      const gameState = createGameState(guesses);
+      gameState.isComplete = true;
+      gameState.isWon = true;
+      const guessResult = createGuessResult(true, 100);
+      const result = getHotColdBarState(gameState, guessResult);
+
+      expect(result.isLost).toBe(false);
+      expect(result.isCorrect).toBe(true);
+    });
+
+    it("returns isLost false when game is not complete", () => {
+      const guesses = [createGuess("🍕", 50)];
+      const gameState = createGameState(guesses);
+      const result = getHotColdBarState(gameState, null);
+
+      expect(result.isLost).toBe(false);
+    });
+
+    it("returns targetEmoji from gameState", () => {
+      const gameState = createGameState([createGuess("🍕", 50)]);
+      gameState.targetEmoji = "🌊";
+      const result = getHotColdBarState(gameState, null);
+
+      expect(result.targetEmoji).toBe("🌊");
     });
   });
 

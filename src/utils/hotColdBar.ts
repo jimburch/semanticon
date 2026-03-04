@@ -9,6 +9,10 @@ export interface HotColdBarState {
   isCorrect: boolean;
   /** Whether there are any guesses to display */
   hasGuesses: boolean;
+  /** Whether the game is lost (all guesses used, none correct) */
+  isLost: boolean;
+  /** The target emoji (revealed when game is lost) */
+  targetEmoji: string | null;
 }
 
 /**
@@ -21,11 +25,14 @@ export function getHotColdBarState(
   const guesses = gameState?.guesses ?? [];
   const latestGuess = guesses.length > 0 ? guesses[guesses.length - 1] : null;
   const isCorrect = lastGuessResult?.isCorrect ?? false;
+  const isLost = (gameState?.isComplete ?? false) && !(gameState?.isWon ?? false);
 
   return {
     currentEmoji: latestGuess?.emoji ?? null,
     position: latestGuess?.score ?? 0,
     isCorrect,
     hasGuesses: guesses.length > 0,
+    isLost,
+    targetEmoji: gameState?.targetEmoji ?? null,
   };
 }

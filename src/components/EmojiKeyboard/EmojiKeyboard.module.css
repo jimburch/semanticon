@@ -13,5 +13,25 @@
   --epr-search-border-color: var(--color-border);
   --epr-category-icon-active-color: var(--color-text);
   --epr-highlight-color: var(--color-surface);
+  --epr-emoji-size: 36px;
+  --epr-category-label-text-color: var(--color-text-muted);
   border: none !important;
+}
+
+/* Style the scrollbar to match dark theme */
+.container :global(.EmojiPickerReact) :global(.epr-body)::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container :global(.EmojiPickerReact) :global(.epr-body)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container :global(.EmojiPickerReact) :global(.epr-body)::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface);
+  border-radius: 4px;
+}
+
+.container :global(.EmojiPickerReact) :global(.epr-body)::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border);
 }

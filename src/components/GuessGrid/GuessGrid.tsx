@@ -10,7 +10,7 @@ type TileData = {
   isPending: boolean;
 };
 
-const getTileClass = (tile: TileData): string => {
+const getTileClass = (tile: TileData, isLastGuessInLostGame: boolean): string => {
   if (tile.isPending) {
     return styles.tile;
   }
@@ -22,6 +22,11 @@ const getTileClass = (tile: TileData): string => {
   // Correct guess - green
   if (tile.guess.score === 100) {
     return `${styles.tile} ${styles.correct}`;
+  }
+
+  // Last guess in a lost game - red
+  if (isLastGuessInLostGame) {
+    return `${styles.tile} ${styles.incorrect}`;
   }
 
   // Same category - yellow
@@ -37,6 +42,7 @@ const GuessGrid = () => {
   const gameState = useGameStore((state) => state.gameState);
   const selectedEmoji = useGameStore((state) => state.selectedEmoji);
   const guesses = gameState?.guesses ?? [];
+  const isLost = (gameState?.isComplete ?? false) && !(gameState?.isWon ?? false);
 
   // Build tile data array
   const tiles: TileData[] = Array.from({ length: MAX_GUESSES }, (_, i) => {
@@ -53,7 +59,7 @@ const GuessGrid = () => {
   return (
     <div className={styles.grid}>
       {tiles.map((tile, index) => (
-        <div key={index} className={getTileClass(tile)}>
+        <div key={index} className={getTileClass(tile, isLost && index === guesses.length - 1)}>
           {tile.emoji && <span className={styles.emoji}>{tile.emoji}</span>}
         </div>
       ))}

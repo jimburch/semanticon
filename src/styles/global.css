@@ -16,6 +16,7 @@
   --color-correct: #538d4e;
   --color-present: #b59f3b;
   --color-absent: #3a3a3c;
+  --color-incorrect: #7c1d2e;
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -25,7 +26,7 @@
   --spacing-xl: 32px;
 
   /* Typography */
-  --font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   --font-size-sm: 12px;
   --font-size-md: 14px;
   --font-size-lg: 16px;

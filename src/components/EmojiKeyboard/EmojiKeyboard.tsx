@@ -24,6 +24,7 @@ const EmojiKeyboard = () => {
         width="100%"
         height={400}
         searchPlaceHolder="Search emojis..."
+        skinTonesDisabled
         previewConfig={{ showPreview: false }}
       />
     </div>
